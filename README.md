@@ -27,7 +27,7 @@ Otherwise Download only the folowing word analogy question answering datasets
 + [ekar](https://huggingface.co/datasets/jiangjiechen/ekar_english) data from [chen-etal-2022](https://aclanthology.org/2022.findings-acl.311/) can be used with hugginface library. 
 
 
-Download following chekcing points for some of the word embedding modesl:
+Download following chekcing points for some of the word embedding models:
 + [Fasttext](https://fasttext.cc/docs/en/english-vectors.html) extract and  place in the folder fasttext
 + [word2vec](https://code.google.com/archive/p/word2vec/) extract and  place it in the loves-word2vec
 + [Glove](https://nlp.stanford.edu/projects/glove/) extract and place in the folder gloves-word2vec
