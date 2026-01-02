@@ -18,7 +18,7 @@ Download Sentential RE DATA, if you may train EqualProbR
 + [scan](https://huggingface.co/datasets/relbert/analogy_questions) download the data from [Tamara Czinczoll](https://arxiv.org/abs/2211.15268) and place under the foler :unprocessed_data/some_extra/scan/.
 + [distractor verbal analogy](https://osf.io/cd7b9/overview) from [Jones et. al](https://link.springer.com/article/10.3758/s13423-022-02062-8#Sec13) and place it under the foler  unprocessed_data/analogy_data/osfstorage-archive/
 
-+ [google_easy,google_hard](hhttps://huggingface.co/datasets/almogtavor/google-analogy-dataset) was generated from the processed google analogy data by Daniel Korchinski.
++ [google_easy,google_hard](https://huggingface.co/datasets/almogtavor/google-analogy-dataset) was generated from the processed google analogy data by Daniel Korchinski.
 
 
 Tacred Extensions: 
