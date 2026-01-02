@@ -42,19 +42,19 @@ def pre_process():
 		e_kar_train_data,e_kar_test_data=pre_process_Ekar(e_kar)
 
 		BLESS = load_dataset("relbert/lexical_relation_classification", "BLESS")
-		BLESS.save_to_disk('localdatasets/BLESS')
+		BLESS.save_to_disk('unprocessed_data/BLESS')
 		#
 		CogALexV = load_dataset("relbert/lexical_relation_classification", "CogALexV")
-		CogALexV.save_to_disk('localdatasets/CogALexV')
+		CogALexV.save_to_disk('unprocessed_data/CogALexV')
 
 		EVALution = load_dataset("relbert/lexical_relation_classification", "EVALution")
-		EVALution.save_to_disk('localdatasets/EVALution')
+		EVALution.save_to_disk('unprocessed_data/EVALution')
 		##
 		ROOT09 = load_dataset("relbert/lexical_relation_classification", "ROOT09")
-		ROOT09.save_to_disk('localdatasets/ROOT09')
+		ROOT09.save_to_disk('unprocessed_data/ROOT09')
 
 		KandH_plus_N = load_dataset("relbert/lexical_relation_classification", "K&H+N")
-		KandH_plus_N.save_to_disk('localdatasets/KandH_plus_N')
+		KandH_plus_N.save_to_disk('unprocessed_data/KandH_plus_N')
 	else:
 
 		e_kar = load_from_disk('unprocessed_data/e_kar')
@@ -91,47 +91,42 @@ def pre_process():
 
 
 
-		# KandH_plus_N = load_from_disk('unprocessed_data/KandH_plus_N')
 
-		# KandH_plus_N_train=KandH_plus_N['train']
-		# KandH_plus_N_test=KandH_plus_N['test']
+	# file_name='unprocessed_data/some_extra/conceptnet_relational_similarity/test.jsonl'
+	# with open(file_name, 'r') as json_file:
+	#     ds_conceptnet_relational_similarity_test = list(json_file)
 
-
-	file_name='unprocessed_data/some_extra/conceptnet_relational_similarity/test.jsonl'
-	with open(file_name, 'r') as json_file:
-	    ds_conceptnet_relational_similarity_test = list(json_file)
-
-	file_name='unprocessed_data/some_extra/conceptnet_relational_similarity/valid.jsonl'
-	with open(file_name, 'r') as json_file:
-	    ds_conceptnet_relational_similarity_train = list(json_file)
+	# file_name='unprocessed_data/some_extra/conceptnet_relational_similarity/valid.jsonl'
+	# with open(file_name, 'r') as json_file:
+	#     ds_conceptnet_relational_similarity_train = list(json_file)
 	################################################################
 
 
-	file_name='unprocessed_data/some_extra/nell_relational_similarity/test.jsonl'
-	with open(file_name, 'r') as json_file:
-	    nell_relational_similarity_test = list(json_file)
+	# file_name='unprocessed_data/some_extra/nell_relational_similarity/test.jsonl'
+	# with open(file_name, 'r') as json_file:
+	#     nell_relational_similarity_test = list(json_file)
 
-	file_name='unprocessed_data/some_extra/nell_relational_similarity/valid.jsonl'
-	with open(file_name, 'r') as json_file:
-	    nell_relational_similarity_train = list(json_file)
+	# file_name='unprocessed_data/some_extra/nell_relational_similarity/valid.jsonl'
+	# with open(file_name, 'r') as json_file:
+	#     nell_relational_similarity_train = list(json_file)
 
 	##
-	file_name='unprocessed_data/some_extra/nell_relational_similarity/test.jsonl'
-	with open(file_name, 'r') as json_file:
-	    nell_relational_similarity_test = list(json_file)
+	# file_name='unprocessed_data/some_extra/nell_relational_similarity/test.jsonl'
+	# with open(file_name, 'r') as json_file:
+	#     nell_relational_similarity_test = list(json_file)
 
-	file_name='unprocessed_data/some_extra/nell_relational_similarity/valid.jsonl'
-	with open(file_name, 'r') as json_file:
-	    nell_relational_similarity_train = list(json_file)
+	# file_name='unprocessed_data/some_extra/nell_relational_similarity/valid.jsonl'
+	# with open(file_name, 'r') as json_file:
+	#     nell_relational_similarity_train = list(json_file)
 	##
 
-	file_name='unprocessed_data/some_extra/t_rex_relational_similarity/test.jsonl'
-	with open(file_name, 'r') as json_file:
-	    t_rex_relational_similarity_test = list(json_file)
+	# file_name='unprocessed_data/some_extra/t_rex_relational_similarity/test.jsonl'
+	# with open(file_name, 'r') as json_file:
+	#     t_rex_relational_similarity_test = list(json_file)
 
-	file_name='unprocessed_data/some_extra/t_rex_relational_similarity/valid.jsonl'
-	with open(file_name, 'r') as json_file:
-	    t_rex_relational_similarity_train = list(json_file)
+	# file_name='unprocessed_data/some_extra/t_rex_relational_similarity/valid.jsonl'
+	# with open(file_name, 'r') as json_file:
+	#     t_rex_relational_similarity_train = list(json_file)
 
 
 
@@ -144,9 +139,6 @@ def pre_process():
 	with open(file_name, 'r') as json_file:
 	    scan_valid = list(json_file)
 
-	# ds_scan = load_dataset("relbert/scientific_and_creative_analogy")
-	# print('ds_scan',ds_scan.keys())
-	#ds_scan dict_keys(['test'])
 	ds_scan_new=[]
 	for t in scan_test:
 		#print(t)
@@ -245,9 +237,6 @@ def pre_process():
 	print('len(google_test),len(google_valid)',len(google_test),len(google_valid))
 
 	google_easy,google_hard=google_easy_hard()
-
-	# exit()
-
 
 
 	#optoins_equivariance
