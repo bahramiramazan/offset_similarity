@@ -92,13 +92,7 @@ def pre_process():
 
 
 
-	# file_name='unprocessed_data/some_extra/conceptnet_relational_similarity/test.jsonl'
-	# with open(file_name, 'r') as json_file:
-	#     ds_conceptnet_relational_similarity_test = list(json_file)
 
-	# file_name='unprocessed_data/some_extra/conceptnet_relational_similarity/valid.jsonl'
-	# with open(file_name, 'r') as json_file:
-	#     ds_conceptnet_relational_similarity_train = list(json_file)
 	################################################################
 
 
@@ -172,7 +166,13 @@ def pre_process():
 
 
 
+	file_name='unprocessed_data/some_extra/conceptnet_relational_similarity/test.jsonl'
+	with open(file_name, 'r') as json_file:
+	    ds_conceptnet_relational_similarity_test = list(json_file)
 
+	file_name='unprocessed_data/some_extra/conceptnet_relational_similarity/valid.jsonl'
+	with open(file_name, 'r') as json_file:
+	    ds_conceptnet_relational_similarity_train = list(json_file)
 
 
 
@@ -383,8 +383,8 @@ def pre_process():
 	'google_easy':(google_easy,google_easy),\
 	'google_hard':(google_hard,google_hard),\
 	'sat_test':(sat_valid,sat_test),
-	't_rex_relational_similarity':(t_rex_relational_similarity_train,t_rex_relational_similarity_test),\
-	'nell_relational_similarity':(nell_relational_similarity_train,nell_relational_similarity_test),
+	# 't_rex_relational_similarity':(t_rex_relational_similarity_train,t_rex_relational_similarity_test),\
+	# 'nell_relational_similarity':(nell_relational_similarity_train,nell_relational_similarity_test),
 	'EVALution_easy':(EVALution_train_easy,EVALution_test_easy),\
 	'EVALution_hard':(EVALution_train_hard,EVALution_test_hard),\
 

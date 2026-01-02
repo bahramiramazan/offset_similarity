@@ -14,11 +14,17 @@ Offset Similarity in Semantically Similar Words
 Download Sentential RE DATA, if you may train EqualProbR
 
 + [Wikidata](https://drive.google.com/file/d/1mmKLh6a78GVNizBoCGhs5ZMYJX2g-DIU/view?usp=sharing)
+
+## Otherwise Download only the folowing word analogy question answering datasets
 + [sat, u2,u4,bats,google](https://github.com/asahi417/analogy-language-model) download and place it under the folder : unprocessed_data/analogy_data.
-+ [scan](https://huggingface.co/datasets/relbert/analogy_questions) download the data from [Tamara Czinczoll](https://arxiv.org/abs/2211.15268) and place under the foler :unprocessed_data/some_extra/scan/.
++ [scan](https://huggingface.co/datasets/relbert/analogy_questions) after download/clone  data from [Tamara Czinczoll](https://arxiv.org/abs/2211.15268) and place  test.jsonl, and valid.jsonl  under the foler :unprocessed_data/some_extra/scan/.
 + [distractor verbal analogy](https://osf.io/cd7b9/overview) from [Jones et. al](https://link.springer.com/article/10.3758/s13423-022-02062-8#Sec13) and place it under the foler  unprocessed_data/analogy_data/osfstorage-archive/
 
-+ [google_easy,google_hard](https://huggingface.co/datasets/almogtavor/google-analogy-dataset) was generated from the processed google analogy data by Daniel Korchinski.
++ [google_easy,google_hard](https://huggingface.co/datasets/almogtavor/google-analogy-dataset) was generated from the google analogy data by by [Mikolov et a](https://github.com/nicholas-leonard/word2vec/blob/master/questions-words.txt)
+
++ [RS](https://huggingface.co/datasets/relbert/analogy_questions) after download/clone  data from [ushio-etal-2021](https://github.com/asahi417/AnalogyTools) and place  test.jsonl, and valid.jsonl  under the foler :unprocessed_data/some_extra/RS/
+
++ [ekar](https://huggingface.co/datasets/jiangjiechen/ekar_english) data from [chen-etal-2022](https://aclanthology.org/2022.findings-acl.311/) can be used with hugginface library. 
 
 
 Tacred Extensions: 
