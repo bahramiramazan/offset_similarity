@@ -39,24 +39,32 @@ Download the datasets, embeddings etc. and place in the expected locations.
 First run the fllowing to make multiple choice analogy questions, easy and hard: 
 ```
  python preprocess_word_analogy.py
+
 ```
 To reproduce the result from Table 2, there are two possible options. 
 > 1. First change the Experiments.py, line x to cat1_solve_analogies, and run the following code. Keep in mind that the model, and data can be changed in Additional_Experiments.py file, line 181. Deafault is Fasttext, with word analogy dataset SAT. 
 
 ```
+
 python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
 ```
 
 
 > 2. The above approach is quick but slow. To run it fastly, first preprocess the data with the tokenizer from concerned word embedding models with the following commmand: 
 
 tokenizer_name  should be from ['oberta-large','gpt2','bert-uncased-large','prophetnet','opt', 't5-large']
+
 ```
+
 python main.py  --task preprocess  --data wordanalogy   --tokenizer_name roberta-large
+
 ```
 and then run with the follwing command 
 
 
 ```
+
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
 ```
