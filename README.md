@@ -15,7 +15,7 @@ Download Sentential RE DATA, if you may train EqualProbR
 
 + [Wikidata](https://drive.google.com/file/d/1mmKLh6a78GVNizBoCGhs5ZMYJX2g-DIU/view?usp=sharing)
 
-## Otherwise Download only the folowing word analogy question answering datasets
+Otherwise Download only the folowing word analogy question answering datasets
 + [sat, u2,u4,bats,google](https://github.com/asahi417/analogy-language-model) download and place it under the folder : unprocessed_data/analogy_data.
 + [scan](https://huggingface.co/datasets/relbert/analogy_questions) after download/clone  data from [Tamara Czinczoll](https://arxiv.org/abs/2211.15268) and place  test.jsonl, and valid.jsonl  under the foler :unprocessed_data/some_extra/scan/.
 + [distractor verbal analogy](https://osf.io/cd7b9/overview) from [Jones et. al](https://link.springer.com/article/10.3758/s13423-022-02062-8#Sec13) and place it under the foler  unprocessed_data/analogy_data/osfstorage-archive/
@@ -27,7 +27,6 @@ Download Sentential RE DATA, if you may train EqualProbR
 + [ekar](https://huggingface.co/datasets/jiangjiechen/ekar_english) data from [chen-etal-2022](https://aclanthology.org/2022.findings-acl.311/) can be used with hugginface library. 
 
 
-Tacred Extensions: 
 Download following chekcing points for some of the word embedding modesl:
 + [Fasttext](https://fasttext.cc/docs/en/english-vectors.html) extract and  place in the folder fasttext
 + [word2vec](https://code.google.com/archive/p/word2vec/) extract and  place it in the loves-word2vec
