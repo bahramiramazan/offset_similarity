@@ -202,39 +202,39 @@ pip installl tqdm
 			```
 
 
-	## Plots and Additional Experiments From Appendix: 
+		### Plots and Additional Experiments From Appendix: 
 
 
-		> 1. Pretraing with analogyQA-Easy vs Hard 
-		* Mini-RELBERT Only set args.hard=False(Experiments.py line ) , and train as instructed for MiniRElBert
-		* MTCQA :set it in Multichoice_Model.py line 51
-		* Baseline: set it in Experiments.py line 
-		* EqualOFfset: set it in Experiments.py line 
+			> 1. Pretraing with analogyQA-Easy vs Hard 
+			* Mini-RELBERT Only set args.hard=False(Experiments.py line ) , and train as instructed for MiniRElBert
+			* MTCQA :set it in Multichoice_Model.py line 51
+			* Baseline: set it in Experiments.py line 
+			* EqualOFfset: set it in Experiments.py line 
 
-		> 1. Bayesain Analysis of word semantics and word relations 
-		- First set experiment_name='cat2_basian_analysis' in Experiments.py line 73, then run the following 
-
-
-		```
-		python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
-
-		```
-
-		> 3. Various Permutation of word Analogy 
-		- First set experiment_name='cat1_plot_permutations_dist' in Experiments.py line 73, then run the following 
-
-		```
-		python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
-
-		```
+			> 1. Bayesain Analysis of word semantics and word relations 
+			- First set experiment_name='cat2_basian_analysis' in Experiments.py line 73, then run the following 
 
 
-		> 4. Ineragreement between models
-		- First set experiment_name='cat1_interagreement_between_models' in Experiments.py line 73, then run the following 
+			```
+			python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
+			```
+
+			> 3. Various Permutation of word Analogy 
+			- First set experiment_name='cat1_plot_permutations_dist' in Experiments.py line 73, then run the following 
+
+			```
+			python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
+			```
 
 
-		```
-		python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+			> 4. Ineragreement between models
+			- First set experiment_name='cat1_interagreement_between_models' in Experiments.py line 73, then run the following 
 
-		```
+
+			```
+			python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
+			```
 
