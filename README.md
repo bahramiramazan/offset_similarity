@@ -110,7 +110,7 @@ python main.py  --task train  --data wordanalogy  --experiment additional_exp  -
 ```
 Note1: The chatGPT can evaluated on ConceptQA(easy/hard), analogyQA(Easy/Hard), and common word analogy benchmarks, you just need to select the data you want to evaluate on `The data, and model can be changed in Additional_Experiments.py line 170`
 
-``**Note2: To Evaluate the response, use GPT notebook. Some times minor adjustments may be needed.** ``
+``**Note2: To Evaluate the response, use GPT notebook. Some times minor adjustments may be needed.** `
 > 3. To train EquaplProbR run the following : 
 
 `First pre-process the data`
@@ -133,8 +133,39 @@ python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --mo
 ```
 
 
-To evaluate on word analogy,`change the variable Table='table3_EquaProbR'`, and then run the follwoing command: 
+To evaluate on word analogy benchamrks in table 3,`change the variable Table='table3_EquaProbR'`, and then run the follwoing command: 
 
 ```
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
+```
+
+
+
+### Trained Models
+
+Training the models  Mini-RelBERT, EqualProbR, Sameconcept, similarOffset
+
+
+> Mini-RelBERT
+
+* First preprocess (change roberta-large to word embedding model of your choice) :
+```
+python main.py  --task preprocess  --data semeval_2012 --tokenizer_name roberta-large
+
+```
+
+* Now to Train 
+
+```
+python main.py  --task train  --data semeval_2012  --experiment semeval_2012  --model_to_train  rc  --tokenizer_name roberta-large
+
+```
+
+To Evaluate ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
+
+```
+python main.py  --task eval  --data semeval_2012  --experiment semeval_2012  --model_to_train  rc  --tokenizer_name roberta-large
+
+```
 
