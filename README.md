@@ -180,7 +180,7 @@ python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-l
 ModelName=ModelName_possible_values[0] #Experimens.py line 266-272
 backend_trained=backendtrained_possible_values[0] #Experimens.py line 266-272
 
-```
+``
 
 ```
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
@@ -198,7 +198,7 @@ python main.py  --task eval  --data wordanalogy  --experiment wordanalogy  --mod
 
 
 > 3. EqualProbR and Lexical Relation Classification ( Table5, Tabel6,)
-- For EqualProbR, we train on  lexical relation classification data set(EVALution, and on related Entities from wikidata) 
+-  EqualProbR for word analogy, we train on  lexical relation classification data set(EVALution, and on related Entities from wikidata). This instruction also works for lexcial Relation classification in Table5.  
 
 `data=['BLESS','EVALution','CogALexV','ROOT09', 'wikidata']`
 
@@ -215,8 +215,14 @@ python main.py  --task train  --data dataname  --experiment lexical_offset  --mo
 
 ```
 
-- To Evaluate EqualPRob R on word analogy run the follwoing, make sure to set ` Table=EqualProbR (Experiments.py line 242) and set ModelName='sentence_route' (Experiments.py line 245 ) and set args.similarity_measure to one of [ 'pairwise_cosine_sim','offset'] (Experiments.py line 270). `
+- To Evaluate EqualPRob R on word analogy run the follwoing, make sure to set the following: 
 
+
+```python
+ ModelName=ModelName_possible_values[0] #Experimens.py line 266-272
+ backend_trained=backendtrained_possible_values[0] #Experimens.py line 266-272
+ wordanalogy_test_data=['wikidata_easy',] # set to datasets you want to see the reult Experiments.py line 305
+```
 
 
 ```
