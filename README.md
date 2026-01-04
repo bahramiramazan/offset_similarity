@@ -1,6 +1,6 @@
 
 
-` To reprocdue the result for the paper : 
+` To reprocdue the result for the paper : `
 
 ## Offset Similarity in Semantically Similar Words
 
