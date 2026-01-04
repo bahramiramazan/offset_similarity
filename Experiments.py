@@ -76,7 +76,6 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
 
         elif str(experiment)=='sentential_re_paper': #re
 
-            expert_head=('head_1','head_3','head_2','head_conditional')
             h3=('head_3',)
 
             h=h3
@@ -87,8 +86,6 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
             args.experiment_no='sentential_re_paper'
             args.epcoh_n=2
             args.model_to_train=model_to_train#
-            print('model_to_train',model_to_train)
-
 
             if 'head_1' in args.heads and 'head_conditional' in args.heads:
                 args.batch_size=12
@@ -124,16 +121,11 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
                 args.heads=list(h)
                 args.h3_embed_size=512
                 args.abstract='flagged_ents'#'flagged_ents'
-                args.experiment_no='six'
+                args.experiment_no='lexical_offset'
                 args.epcoh_n=2
                 args.model_to_train=model_to_train#
-                print('model_to_train',model_to_train)
                 args.h3_embed_size=512
-     
                 args.n_class
-                print('args.n_class',args.n_class)
-
-
                 args.batch_size=24
                 args.load_from_checkpoint=False if mode=='train' else False
                 args.save=True
@@ -141,11 +133,8 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
                 args.load_from_checkpoint=True if mode!='train' else False
                 if args.device==torch.device('mps') or args.device==torch.device('cpu'):
                     args.batch_size=4
-                print('batch_size',args.batch_size)
 
                 train_loader,dev_loader_b=rc_data(args)
-                print('len',len(train_loader))
-                print('len',len(dev_loader_b))
                 DATA={'train':train_loader,'dev':dev_loader_b}
 
                 georoc_train_eval(data_name,mode=mode,exp_args=args,DATA=DATA)
@@ -159,25 +148,20 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
             h3=('head_conditional',)
 
             h=h3
-            print('h',h)
+            print('model_name',model_name,data_name)
 
             args=get_settings(mode,model_name,data_name)
             args.heads=list(h)
+            args.model_name=model_name
             args.h3_embed_size=512
             args.abstract='flagged_ents'
             args.experiment_no='semeval_2012'
             args.epcoh_n=3
             args.model_to_train=model_to_train#
-            print('model_to_train',model_to_train)
+            args['train_from_scratch']=True if mode=='train' else False 
 
-
-            if 'head_1' in args.heads and 'head_conditional' in args.heads:
-                args.batch_size=12
-                args.load_from_checkpoint=True if mode=='train' else True
-
-            else:
-                args.batch_size=24
-                args.load_from_checkpoint=True if mode=='train' else True
+            args.batch_size=24
+            args.load_from_checkpoint=True if mode=='train' else True
             args.save=True
             args.experiment=True
             args.load_from_checkpoint=True if mode!='train' else True
@@ -194,8 +178,6 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
             h3=('head_3',)
 
             h=h3
-            print('h',h)
-
             args=get_settings(mode,model_name,data_name)
             args.heads=list(h)
             args.h3_embed_size=512
@@ -203,29 +185,20 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
             args.experiment_no='conceptqa'
             args.epcoh_n=2
             args.model_to_train=model_to_train#
-            print('model_to_train',model_to_train)
             args.h3_embed_size=512
- 
             args.n_class
-            print('args.n_class',args.n_class)
             args['route_or_baseline']='route'
             args['hard']='conceptqa_easy'
-
-
+            args['sameconcept']=True
             args.batch_size=24
-            args.load_from_checkpoint=False if mode=='train' else False
+     
             args.save=True
             args.experiment=True
             args.load_from_checkpoint=True if mode!='train' else False
             if args.device==torch.device('mps') or args.device==torch.device('cpu'):
                 args.batch_size=4
-            print('batch_size',args.batch_size)
-
             train_loader,dev_loader_b=rc_data(args)
-            print('len',len(train_loader))
-            print('len',len(dev_loader_b))
             DATA={'train':train_loader,'dev':dev_loader_b}
-
             georoc_train_eval(data_name,mode=mode,exp_args=args,DATA=DATA)
 
 
@@ -237,81 +210,108 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
 
         elif str(experiment)=='wordanalogy':
 
-            #L=['classification_head_train','baseline','train_route','baseline_train','route_train_head']
+            def run_exp(args,m,wordanalogy_train_data,wordanalogy_test_data,backend_trained):
+                model_name=args.model_name
+                model_name=backend_model_name
+       
+                args=get_settings(mode,model_name,data_name)
+                args.similarity_measure='offset'#pairwise_cosine_sim#offset
+                args.heads=['head_3',]
+                args['backend_trained']=backend_trained
+                args.experiment_no='wordanalogy'
+                if model_name=='bert-base-uncased':
+                    args.embed_size=768
+                    args.lr=1e-5
+                else:
+                    args.lr=0.5e-5
 
-            ModelName='sentence_route'
+                args.wordanalogy_model=m
+                args.model_to_train=model_to_train
+                if args.device==torch.device('mps'):
+                    args.batch_size=2
+                else:
+                    args.batch_size=24
+     
+                args.wordanalogy_train_data=wordanalogy_train_data
+                args.wordanalogy_test_data=wordanalogy_test_data
+    
+                args.epcoh_n=4
+                                  
+                args.save=True
+                args.fin_tune=True 
+                if 'route' in args.wordanalogy_model:
+                    args.heads=['head_3',]
+                    args.h3_embed_size=512
+
+                    file_name='essential_files/wordanalogyrel_dic.json'
+                    word_analogyrel_dic= json.load(open(file_name))['rel_dic']
+                    args.n_class=352
+                    args.load_from_checkpoint=True if mode!='train' else False
+                if m=='baseline':
+                    args.load_from_checkpoint=False 
+                if 'EqualProbR' in backend_trained:
+                    args.load_from_checkpoint=True
+
+                train_loader,dev_loader_b=rc_data(args)
+                DATA={'train':train_loader,'dev':dev_loader_b}
+                if 'train' in m:
+                    args.train=='train'
+                    model=georoc_train_eval(data_name,mode='train',exp_args=args,DATA=DATA)
+                else:
+                    args.train=='eval'
+
+                    model=georoc_train_eval(data_name,mode='eval',exp_args=args,DATA=DATA)
+            ################################################################################
+            ModelName_possible_values=['sentence_route','baseline']
+            ModelName=ModelName_possible_values[0]
 
             if mode=='train':
                 ModelName=ModelName+'_train'
 
+            backendtrained_possible_values=['EqualProbR_wikidata','EqualProbR_EVALution','not_trained_backend']
+            backend_trained=backendtrained_possible_values[0]
 
-            Table='table2_EqualProbR' #EqualProbR
-
-            if 'EqualProbR' in Table : 
+            if 'EqualProbR' in backend_trained : 
+                m='sentence_route'
 
                 wordanalogy_test_data=['analogykb_easy','analogykb_hard',\
                             'wikidata_easy','wikidata_hard','semeval_2012_easy','semeval_2012_hard','ekar','google','bats','u4','u2','sat']
 
                 wordanalogy_train_data=['wikidata_easy','semeval_2012_relbert','RS','EVALution_easy',]
+                wordanalogy_test_data=['special',]
 
-            if 'similaroffset' in Table: 
+                backend_trained='EqualProbR_wikidata'
+
+                run_exp(args,m,wordanalogy_train_data,wordanalogy_test_data,backend_trained)
+                #####
+
+                backend_trained='EqualProbR_EVALution'
+                wordanalogy_test_data=['EVALution_easy','EVALution_hard']
+                run_exp(args,m,wordanalogy_train_data,wordanalogy_test_data,backend_trained)
+
+
+
+            elif 'similaroffset' in backend_trained: 
+
                 wordanalogy_test_data=['wikidata_easy','wikidata_hard','ekar','google','bats','u4','u2','sat','special','scan','RS','google_hard']
                 wordanalogy_train_data=['wikidata_easy','semeval_2012_relbert','RS','EVALution_easy',]
 
+                m=ModelName
+                run_exp(args,m,wordanalogy_train_data,wordanalogy_test_data,backend_trained)
+
+
+            elif 'not_trained_backend' in backend_trained: 
+
+                wordanalogy_test_data=['wikidata_easy','wikidata_hard','ekar','google','bats','u4','u2','sat','special','scan','RS','google_hard']
+                wordanalogy_train_data=['wikidata_easy','semeval_2012_relbert','RS','EVALution_easy',]
+                wordanalogy_test_data=['special',]
+
+                m='baseline'
+                mode='eval'
+
+
+                run_exp(args,m,wordanalogy_train_data,wordanalogy_test_data,backend_trained)
+
  
-            
-            exp=0
-            if exp==0:
-                    for m in L:
-                        model_name=args.model_name
-                        model_name=backend_model_name
-               
-                        args=get_settings(mode,model_name,data_name)
-                        args.similarity_measure='offset'#pairwise_cosine_sim#offset
-                        args.heads=['head_3',]
-                        args.experiment_no='wordanalogy'
-                        if model_name=='bert-base-uncased':
-                            args.embed_size=768
-                            args.lr=1e-5
-                        else:
-                            args.lr=0.5e-5
-
-                        args.wordanalogy_model=m
-                        args.model_to_train=model_to_train
-                        if args.device==torch.device('mps'):
-                            args.batch_size=2
-                        else:
-                            args.batch_size=24
-             
-                        args.wordanalogy_train_data=wordanalogy_train_data
-                        args.wordanalogy_test_data=wordanalogy_test_data
-            
-                        args.epcoh_n=4
-                                          
-                        args.save=False
-                        args.fin_tune=False 
-                        if 'route' in args.wordanalogy_model:
-                            args.heads=['head_3',]
-                            args.h3_embed_size=512
-
-                            file_name='essential_files/wordanalogyrel_dic.json'
-                            word_analogyrel_dic= json.load(open(file_name))['rel_dic']
-                            args.n_class=352
-                            args.load_from_checkpoint=True
-   
-                          
-                        
-                        if m in 'classification_train_head':
-                            args.h3_embed_size=2
-
-                        train_loader,dev_loader_b=rc_data(args)
-                        DATA={'train':train_loader,'dev':dev_loader_b}
-                        if 'train' in m:
-                            args.train=='train'
-                            model=georoc_train_eval(data_name,mode='train',exp_args=args,DATA=DATA)
-                        else:
-                            args.train=='eval'
-
-                            model=georoc_train_eval(data_name,mode='eval',exp_args=args,DATA=DATA)
-
+       
                      

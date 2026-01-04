@@ -526,7 +526,7 @@ def rc_eval_wordanalogy(args,model,abstract,batch_data,device,idx2word='none'):
                     else:
                         predictions_all[y[No].item()][question_no]={'positive':[],'negative':[]}
                         predictions_all[y[No].item()][question_no][positive_negative].append(item)
-        if True:
+        if False:
 
             print_similarity_and_dist(args,Similarity_in_Hidden_Layers)
 
@@ -563,18 +563,16 @@ def rc_eval_wordanalogy(args,model,abstract,batch_data,device,idx2word='none'):
 def rc_eval(args,model,abstract,batch_data,device,idx2word='none'):
     temp=['BLESS','EVALution','CogALexV','ROOT09','KandH_plus_N','semeval_2012']
     torch.manual_seed(0)
-    file='essential_files/'+args.data_type+'rel_dic.json'
-    with open(file) as f:
-        rel_dic = json.load(f)['rel_dic']
-        rel_dic_new={}
-        kbid2id={}
-        for k in rel_dic.keys():
-            #hasa {'relation': 'hasa', 'kbID': '[0]'}
-            # print(k,rel_dic[k])
-            # exit()
-            rel_dic_new[k]=rel_dic[k]['kbID']
+    if args.data_type!='semeval_2012':
+        file='essential_files/'+args.data_type+'rel_dic.json'
+        with open(file) as f:
+            rel_dic = json.load(f)['rel_dic']
+            rel_dic_new={}
+            kbid2id={}
+            for k in rel_dic.keys():
+                rel_dic_new[k]=rel_dic[k]['kbID']
 
-        rel_dic_rev = {y: x for x, y in rel_dic_new.items()}
+            rel_dic_rev = {y: x for x, y in rel_dic_new.items()}
     ####
 
     ##
@@ -783,50 +781,50 @@ def georoc_train_eval(data_name,mode='train',exp_args=None,DATA=None,model_for_f
     if args.load_from_checkpoint:
         print('args.save_dir')
         # exit()
-        if args.experiment_no in ['lexical_offset','sentential_re_paper','three','four','five','six']:
+        if args.experiment_no in ['lexical_offset','sentential_re_paper',]:
             args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.data_type)+'.t7'
             args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.model_to_train)+str(args.data_type)+'.t7'
             args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_rc'+'wikidata'+'.t7'
-            print('args.save_dir',args.save_dir)
-        if args.experiment_no in ['conceptqa',]:
-            args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.data_type)+'.t7'
-            args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.model_to_train)+str(args.data_type)+'.t7'
-            args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.model_to_train)+'wikidata'+'.t7'
 
             print('args.save_dir',args.save_dir)
-        if args.experiment_no=='semeval_2012':
-            args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_rc'+'wikidata'+'.t7'
-            #args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+'conll'+'.t7'
+        elif args.experiment_no in ['conceptqa',]:
+
             args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.model_to_train)+str(args.data_type)+'.t7'
+            if args.sameconcept==False:
+                args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.model_to_train)+'wikidata'+'.t7'
 
             print('args.save_dir',args.save_dir)
+        elif args.experiment_no=='semeval_2012':
+            if args.train_from_scratch:
+                args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_rc'+'wikidata'+'.t7'
+            else:
+                args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.model_to_train)+str(args.data_type)+'.t7'
 
 
 
 
         elif args.experiment_no=='wordanalogy':
-            args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str('EVALution')+'.t7'
-            #args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str('wikidata')+'.t7'
+            if 'EVALution' in args.backend_trained:
+                args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.model_to_train)+'EVALution'+'.t7'
 
-            #args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.data_type)+'.t7'
-            args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.model_to_train)+'conceptqa'+'.t7'
-            args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.model_to_train)+'wikidata'+'.t7'
-            
-            print('args.save_dir',args.save_dir)#wordanalogy
+            elif 'wikidata' in args.backend_trained:
+                args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.model_to_train)+'wikidata'+'.t7'
+
+            elif args.backend_trained=='similaroffset':
+                args.save_dir=args.checkpoint_path+'/model_'+str(args.model_name)+'_'+str(args.model_to_train)+str(args.data_type)+'.t7'
             
 
-        print('#args.experiment_no',args.experiment_no)
+
         if args.device==torch.device('mps'):
 
             checkpoint = torch.load(args.save_dir,weights_only=False,map_location=torch.device('mps'))
-            print()
+            print('mps')
         else:
-            checkpoint = torch.load(args.save_dir,weights_only=False)#,map_location=torch.device('mps'))
+            checkpoint = torch.load(args.save_dir,weights_only=False)
         ##########
-        print('checkpoint')
-        #exit()
 
         tmp=['wordanalogy',]
+        print('args.experiment_no ',args.experiment_no )
 
         if args.experiment_no in ['semeval_2012','sentential_re_paper','conceptqa','five','six']:
             print('t')
@@ -854,7 +852,7 @@ def georoc_train_eval(data_name,mode='train',exp_args=None,DATA=None,model_for_f
 
                 model.transformer_decoder.load_state_dict(transformer_decoder)
                 model.transformer.load_state_dict(transformer)
-                #model.transformer.load_state_dict(transformer)
+
                 print('loaded')
 
             else:
@@ -866,17 +864,13 @@ def georoc_train_eval(data_name,mode='train',exp_args=None,DATA=None,model_for_f
             transformer=OrderedDict()
             head_3=OrderedDict()
             state_dict=checkpoint['state_dict']
-
             for k, v in state_dict.items():
                 if 'module' in k:
                     name = k[7:] # remove `module.`
                     if 'head_3' in k:
-                 
                         head_3[len('head_3'):]=v
                     if 'transformer' in k:
-               
                         transformer[len('transformer'):]=v
-
                 else:
                     if 'head_3' in k:
                         k=k.replace('head_3.','')
@@ -889,6 +883,7 @@ def georoc_train_eval(data_name,mode='train',exp_args=None,DATA=None,model_for_f
 
             model.head_3.load_state_dict(head_3)
             model.transformer.load_state_dict(transformer)
+            print('loaded')
 
         Loss_Trend_pre=[]
 

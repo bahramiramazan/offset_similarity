@@ -263,7 +263,7 @@ class Relation_Classifier_Model(nn.Module):
                         nn.init.xavier_normal_(param)
 
         if args.data_type=='semeval_2012':
-            file='essential_files/localdatasets/all_relation_dic.json'
+            file='essential_files/all_relation_dic.json'
         
             with open(file) as f:
                 no_rel = json.load(f)['data']['category']
@@ -276,8 +276,7 @@ class Relation_Classifier_Model(nn.Module):
         self.head=8
         self.args=args
         self.modality=args.model_name#'roberta-large' if model_name=='roberta-large'  else 'bert-base-uncased'
-        tmp=['paper2_WikidataPretraining','paper2_EVALutionPretraining','paper2_lexicalZeroshotTraining','paper2_RE_Trained_lexicalTraining','wordanalogy']
-
+  
         tokenizer_special_dic='semeval_2012_re' if args.data_type=='semeval_2012' else 're'
         data_selected=args.data_type
         #self.transformer_config, self.transformer = _get_pretrained_transformer2(self.modality) if args.data_type=='wordanalogy' else  _get_pretrained_transformer3(self.modality) 

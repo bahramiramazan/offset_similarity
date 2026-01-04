@@ -1516,15 +1516,15 @@ def print_predictions(predictions_all,word_analogy_types_dic_rev):
     acc_for_evaluation_sat=0
 
 
-    file='essential_files/wordanalogyrel_dic_sre.json'
-    with open(file) as f:
-        wordanalogyrel_dic_sre = json.load(f)['rel_dic']
-        wordanalogyrel_dic_sre_rev = {y: x for x, y in wordanalogyrel_dic_sre.items()}
+    # file='essential_files/wordanalogyrel_dic_sre.json'
+    # with open(file) as f:
+    #     wordanalogyrel_dic_sre = json.load(f)['rel_dic']
+    #     wordanalogyrel_dic_sre_rev = {y: x for x, y in wordanalogyrel_dic_sre.items()}
     ##
-    file='essential_files/wordanalogyrel_dic_semeval.json'
-    with open(file) as f:
-        wordanalogyrel_dic_semeval_2012 = json.load(f)['rel_dic']
-        wordanalogyrel_dic_semeval_2012_rev = {y: x for x, y in wordanalogyrel_dic_semeval_2012.items()}
+    # file='essential_files/wordanalogyrel_dic_semeval.json'
+    # with open(file) as f:
+    #     wordanalogyrel_dic_semeval_2012 = json.load(f)['rel_dic']
+    #     wordanalogyrel_dic_semeval_2012_rev = {y: x for x, y in wordanalogyrel_dic_semeval_2012.items()}
 
 
  
@@ -1608,7 +1608,7 @@ def print_predictions(predictions_all,word_analogy_types_dic_rev):
 
             temp=True
             #print('###############')
-            print('lennegative_analogies',len(negative_analogies))
+            #print('lennegative_analogies',len(negative_analogies))
             for q in negative_analogies:
 
                 sim =q['similarity']
@@ -1642,16 +1642,16 @@ def print_predictions(predictions_all,word_analogy_types_dic_rev):
 
                 # print('y',y)
                 # print('r',r)
-                if tp in ['BLESS','EVALution','CogALexV','ROOT09','KandH_plus_N']:
-                    r_label=wordanalogyrel_dic_lexical_rev[r]
-                elif tp in ['wikidata','conll']:
-                    r_label=wordanalogyrel_dic_sre_rev[r]
-                elif tp =='semeval_data':
-                    r_label=wordanalogyrel_dic_semeval_2012_rev[r]
-                else:
-                    continue
+                # if tp in ['BLESS','EVALution','CogALexV','ROOT09','KandH_plus_N']:
+                #     r_label=wordanalogyrel_dic_lexical_rev[r]
+                # elif tp in ['wikidata','conll']:
+                #     r_label=wordanalogyrel_dic_sre_rev[r]
+                # elif tp =='semeval_data':
+                #     r_label=wordanalogyrel_dic_semeval_2012_rev[r]
+                # else:
+                #     continue
                 ##############################
-                r=r_label
+                r=r#r_label
                 # print('r_label',r_label)
                 # print('****')
 
