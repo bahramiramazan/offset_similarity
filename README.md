@@ -73,7 +73,7 @@ python main.py  --task preprocess  --data *dataName*  --tokenizer_name tokenizer
 1. To  evaluate the word embedding models on AnalogyQA-Easy or Hard as in the Table2, simple approach is to  run the follwoing comman: 
 
 
-* First preprocess *** change roberta-large to word embedding model of your choice :
+* First preprocess change roberta-large to word embedding model of your choice :
 ```
 python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-large
 
