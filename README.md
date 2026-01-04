@@ -101,14 +101,17 @@ python main.py  --task train  --data wordanalogy  --experiment additional_exp  -
 ```
 
 
->3. To evlauate chagtp : first `set the variable experiment_name=evaluate_gpt, in Experiments.py line 73`  and then  run the following: 
+>3. To collect response from  ChatGPT : first `set the variable experiment_name=evaluate_gpt, in Experiments.py line 73`  and then  run the following: 
 
 ```
 
 python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
 ```
-`The data, and model can be changes in Additional_Experiments.py line 170`
+Note1: The chatGPT can evaluated on ConceptQA(easy/hard), analogyQA(Easy/Hard), and common word analogy benchmarks, you just need to select the data you want to evaluate on `The data, and model can be changed in Additional_Experiments.py line 170`
+
+**Note2: To Evaluate the response, use GPT notebook. Some times minor adjustments may be needed.** 
+
 
 > 3. To train EquaplProbR run the following : 
 
