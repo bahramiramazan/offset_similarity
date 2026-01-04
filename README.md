@@ -58,7 +58,7 @@ First run the fllowing to make multiple choice analogy questions, easy and hard:
 The following data can be proprocess with the commmand below 
 datanames=['conceptqa','wordanalogy','semeval_2012']+ ['BLESS','EVALution','CogALexV','ROOT09']
 
-Tokenizer_Names=['bert-large-uncased','gpt1','roberta-large','opt','prophetnet','t5-large']
+`Tokenizer_Names=['bert-large-uncased','gpt1','roberta-large','opt','prophetnet','t5-large']`
 
 ```
 python main.py  --task preprocess  --data *dataName*  --tokenizer_name tokenizerName
