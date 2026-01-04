@@ -47,7 +47,7 @@ pip installl tqdm
 
 
 > preprocess General: \
--First run the fllowing to make multiple choice analogy questions, easy and hard: 
+- First run the fllowing to make multiple choice analogy questions, easy and hard: 
 ```
  python preprocess_word_analogy.py
 
@@ -55,8 +55,8 @@ pip installl tqdm
 
 
 > Preprocess Specific: 
--The following data can be proprocess with the commmand below 
--datanames=['conceptqa','wordanalogy','semeval_2012']+ ['BLESS','EVALution','CogALexV','ROOT09']
+- The following data can be proprocess with the commmand below 
+- datanames=['conceptqa','wordanalogy','semeval_2012']+ ['BLESS','EVALution','CogALexV','ROOT09']
 
 `Tokenizer_Names=['bert-large-uncased','gpt1','roberta-large','opt','prophetnet','t5-large']`
 
@@ -118,7 +118,7 @@ Note1: The chatGPT can evaluated on ConceptQA(easy/hard), analogyQA(Easy/Hard), 
 
 ### Trained Models
 
--Training the models  Mini-RelBERT, EqualProbR, Sameconcept, similarOffset
+- Training the models  Mini-RelBERT, EqualProbR, Sameconcept, similarOffset
 
 
 > 1. Mini-RelBERT
