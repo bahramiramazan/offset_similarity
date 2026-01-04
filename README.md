@@ -70,7 +70,14 @@ python main.py  --task preprocess  --data *dataName*  --tokenizer_name tokenizer
 ### Table2 
 
 #### unsupervised vector Offset(without training)
-1. To reproduce evaluate the unsupervised word analogy question answering form table 2, simple approach is to run except fasttext, and GPT4.0 others can be evaluated by the follwoing comman: 
+1. To  evaluate the word embedding models on AnalogyQA-Easy or Hard as in the Table2, simple approach is to  run the follwoing comman: 
+
+
+* First preprocess *** change roberta-large to word embedding model of your choice :
+```
+python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-large
+
+```
 
 
 ```
@@ -78,6 +85,8 @@ python main.py  --task preprocess  --data *dataName*  --tokenizer_name tokenizer
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
 ```
+
+
 
 
 
