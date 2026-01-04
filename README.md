@@ -81,7 +81,7 @@ python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-l
 * Now To evalaute (with roberta-large)run the following command
 `Make sure the following configurations are correct: `
 
-```requirements
+```python
  ModelName=ModelName_possible_values[-1] # Experiments.py line 266
  wordanalogy_test_data=['wikidata_easy',] # set to datasets you want to see the reult Experiments.py line 305
 ```
