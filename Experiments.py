@@ -304,7 +304,7 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
 
                 wordanalogy_test_data=['wikidata_easy','wikidata_hard','ekar','google','bats','u4','u2','sat','special','scan','RS','google_hard']
                 wordanalogy_train_data=['wikidata_easy','semeval_2012_relbert','RS','EVALution_easy',]
-                wordanalogy_test_data=['special',]
+
 
                 m='baseline'
                 mode='eval'

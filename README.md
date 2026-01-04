@@ -83,6 +83,8 @@ python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-l
 Configurations:
 
 ```python
+ ModelName=ModelName_possible_values[0] #Experimens.py line 266-272
+ backend_trained=backendtrained_possible_values[-1] #Experimens.py line 266-272
  ModelName=ModelName_possible_values[-1] # Experiments.py line 266
  wordanalogy_test_data=['wikidata_easy',] # set to datasets you want to see the reult Experiments.py line 305
 ```
@@ -117,7 +119,7 @@ python main.py  --task train  --data wordanalogy  --experiment additional_exp  -
 ```
 - Note1: The chatGPT can evaluated on ConceptQA(easy/hard), analogyQA(Easy/Hard), and common word analogy benchmarks, you just need to select the data you want to evaluate on `The data, and model can be changed in Additional_Experiments.py line 170`
 
-- Note2: To Evaluate the response, use GPT_eval.ipynb notebook. Some times minor adjustments may be needed. `
+- Note2: To Evaluate the response, use GPT_eval.ipynb notebook. Some times minor adjustments may be needed. 
 
 ---
 ---
@@ -130,6 +132,20 @@ python main.py  --task train  --data wordanalogy  --experiment additional_exp  -
 > 1. Mini-RelBERT
 
 * First preprocess (change roberta-large to word embedding model of your choice) :
+```
+python main.py  --task preprocess  --data wikidata --tokenizer_name roberta-large
+
+```
+
+* pre-train with sentential re :
+```
+python main.py  --task eval  --data wikidata  --experiment sentential_re_paper  --model_to_train  rc  --tokenizer_name roberta-large
+
+```
+
+
+
+* Now preprocess (change roberta-large to word embedding model of your choice) :
 ```
 python main.py  --task preprocess  --data semeval_2012 --tokenizer_name roberta-large
 
@@ -160,6 +176,11 @@ python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-l
 ```
 
 * Train and Evaluate at once : 
+```python
+ModelName=ModelName_possible_values[0] #Experimens.py line 266-272
+backend_trained=backendtrained_possible_values[0] #Experimens.py line 266-272
+
+``
 
 ```
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
