@@ -186,7 +186,7 @@ python main.py  --task train  --data dataname  --experiment lexical_offset  --mo
 
 ```
 
-- To Evaluate EqualPRob R on word analogy run the follwoing, make sure to set ` Table=EqualProbR` (Experiments.py line 242) and set ModelName='sentence_route' (Experiments.py line 245 ) and set args.similarity_measure to one of [ 'pairwise_cosine_sim','offset'] (Experiments.py line 270). `
+- To Evaluate EqualPRob R on word analogy run the follwoing, make sure to set ` Table=EqualProbR (Experiments.py line 242) and set ModelName='sentence_route' (Experiments.py line 245 ) and set args.similarity_measure to one of [ 'pairwise_cosine_sim','offset'] (Experiments.py line 270). `
 
 
 
