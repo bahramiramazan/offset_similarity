@@ -143,7 +143,7 @@ python main.py  --task eval  --data semeval_2012  --experiment semeval_2012  --m
 ---
 
 
-> 2. SimiarOffset
+> 2. SimilarOffset
 
 * First preprocess (change roberta-large to word embedding model of your choice) :
 ```
@@ -186,7 +186,9 @@ python main.py  --task train  --data dataname  --experiment lexical_offset  --mo
 
 ```
 
-- To Evaluate EqualPRob R on word analogy run the follwoing, make sure to set (` Table=EqualProbR`)
+- To Evaluate EqualPRob R on word analogy run the follwoing, make sure to set ` Table=EqualProbR` (Experiments.py line 242) and set ModelName='sentence_route' (Experiments.py line 245 ) and set args.similarity_measure to one of [ 'pairwise_cosine_sim','offset'] (Experiments.py line 270). `
+
+
 
 ```
 python main.py  --task eval  --data dataname  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
@@ -209,7 +211,8 @@ python main.py  --task train  --data mtcqa  --experiment mtcqa  --model_to_train
 - Mini-RELBERT Only set args.hard=False(Experiments.py line ) , and train as instructed for MiniRElBert
 - MTCQA :set it in Multichoice_Model.py line 51
 - Baseline: set it in Experiments.py line 
-- EqualOFfset: set it in Experiments.py line 
+`for baseline model set set ModelName='baseline' (Experiments.py line 245 ) and set args.similarity_measure='offset' (Experiments.py line 270). `
+- EqualOFfset: `for baseline model set set ModelName='sentence_route' (Experiments.py line 245 ) and set args.similarity_measure='offset' (Experiments.py line 270). `
 
 > 1. Bayesain Analysis of word semantics and word relations 
 - First set experiment_name='cat2_basian_analysis' in Experiments.py line 73, then run the following 

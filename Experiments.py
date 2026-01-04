@@ -70,7 +70,7 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
             'evaluate_gpt'
             ]
 
-            experiment_name='evaluate_gpt'
+            experiment_name='cat2_basian_analysis'
 
             plots_and_custom_experiments(experiment_name,args=args)
 
@@ -237,26 +237,27 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
 
         elif str(experiment)=='wordanalogy':
 
-            L=['classification_head_train','baseline','train_route','baseline_train','route_train_head']
+            #L=['classification_head_train','baseline','train_route','baseline_train','route_train_head']
 
-            L=['sentence_route_train',]
-            L=['sentence_route',]
+            ModelName='sentence_route'
+
+            if mode=='train':
+                ModelName=ModelName+'_train'
 
 
+            Table='table2_EqualProbR' #EqualProbR
 
+            if 'EqualProbR' in Table : 
 
-            wordanalogy_test_data=['wikidata_hard','wikidata_easy','ekar','google','bats','u4','u2','sat','special']
-            wordanalogy_test_data=['analogykb_easy','analogykb_hard',\
-            'wikidata_easy','wikidata_hard','semeval_2012_easy','semeval_2012_hard','ekar','google','bats','u4','u2','sat']
-            wordanalogy_train_data=['wikidata_easy','RS',]
-            wordanalogy_test_data=['semeval_2012_easy','semeval_2012_hard','analogykb_easy','analogykb_hard','wikidata_easy','wikidata_hard']
-            
-            wordanalogy_test_data=['wikidata_easy','wikidata_hard','ekar','google','bats','u4','u2','sat','special','scan','RS','google_hard']
-            wordanalogy_train_data=['wikidata_easy','semeval_2012_relbert','RS','EVALution_easy',]
+                wordanalogy_test_data=['analogykb_easy','analogykb_hard',\
+                            'wikidata_easy','wikidata_hard','semeval_2012_easy','semeval_2012_hard','ekar','google','bats','u4','u2','sat']
 
-            wordanalogy_test_data=['special','sat']
+                wordanalogy_train_data=['wikidata_easy','semeval_2012_relbert','RS','EVALution_easy',]
 
-            wordanalogy_train_data=['scan',]
+            if 'similaroffset' in Table: 
+                wordanalogy_test_data=['wikidata_easy','wikidata_hard','ekar','google','bats','u4','u2','sat','special','scan','RS','google_hard']
+                wordanalogy_train_data=['wikidata_easy','semeval_2012_relbert','RS','EVALution_easy',]
+
  
             
             exp=0

@@ -4,9 +4,7 @@ import sys
 sys.path.append(PATH)
 import torch.nn as nn
 
-from benchmarks.web.datasets.similarity import fetch_MEN, fetch_WS353, fetch_SimLex999
 
-from benchmarks.web.analogy import *
 import torch
 import random
 import numpy as np
