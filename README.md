@@ -70,7 +70,9 @@ python main.py  --task preprocess  --data *dataName*  --tokenizer_name tokenizer
 ### Table2 
 
 #### unsupervised vector Offset(without training)
-1. To  evaluate the word embedding models on AnalogyQA-Easy or Hard as in the Table2, effecient approach is to  run the follwoing commands in order: 
+
+
+> 1. To  evaluate the word embedding models on AnalogyQA-Easy or Hard as in the Table2, effecient approach is to  run the follwoing commands in order: 
 
 
 * First preprocess (change roberta-large to word embedding model of your choice) :
@@ -147,7 +149,7 @@ python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --mo
 Training the models  Mini-RelBERT, EqualProbR, Sameconcept, similarOffset
 
 
-> Mini-RelBERT
+> 1. Mini-RelBERT
 
 * First preprocess (change roberta-large to word embedding model of your choice) :
 ```
@@ -162,10 +164,63 @@ python main.py  --task train  --data semeval_2012  --experiment semeval_2012  --
 
 ```
 
-To Evaluate ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
+- To Evaluate ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
 
 ```
 python main.py  --task eval  --data semeval_2012  --experiment semeval_2012  --model_to_train  rc  --tokenizer_name roberta-large
 
 ```
 
+
+
+> 2. SimiarOffset
+
+* First preprocess (change roberta-large to word embedding model of your choice) :
+```
+python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-large
+
+```
+
+* Now to Train 
+
+```
+python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
+```
+
+- To Evaluate ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
+
+```
+python main.py  --task eval  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
+```
+
+
+
+
+> 3. EqualProbR and Lexical Relation Classification ( Table5, Tabel6,)
+For EqualProbR, we train on  lexical relation classification data set(EVALution, and on related Entities from wikidata) 
+
+data=['BLESS','EVALution','CogALexV','ROOT09', 'wikidata']
+
+* First preprocess (change roberta-large to word embedding model of your choice) :
+```
+python main.py  --task preprocess  --data dataname --tokenizer_name roberta-large
+
+```
+
+* Now to Train and evaluate on test set 
+
+```
+python main.py  --task train  --data dataname  --experiment lexical_offset  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
+```
+
+- To Evaluate EqualPRob R on word analogy run the follwoing, make sure to set (` Table=EqualProbR`)
+
+```
+python main.py  --task eval  --data dataname  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
+```
+
+`Note: all other word anlogy datasets are evauated on EqualProbR model trained on wikdiata, while EVALutionEasy/Hard on model trained on EVALution `
