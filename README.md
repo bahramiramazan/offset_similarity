@@ -173,7 +173,7 @@ python main.py  --task eval  --data wordanalogy  --experiment wordanalogy  --mod
 > 3. EqualProbR and Lexical Relation Classification ( Table5, Tabel6,)
 For EqualProbR, we train on  lexical relation classification data set(EVALution, and on related Entities from wikidata) 
 
-data=['BLESS','EVALution','CogALexV','ROOT09', 'wikidata']
+`data=['BLESS','EVALution','CogALexV','ROOT09', 'wikidata']`
 
 * First preprocess (change roberta-large to word embedding model of your choice) :
 ```
