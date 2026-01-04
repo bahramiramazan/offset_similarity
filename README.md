@@ -47,7 +47,7 @@ pip installl tqdm
 
 
 > preprocess General: \
-First run the fllowing to make multiple choice analogy questions, easy and hard: 
+-First run the fllowing to make multiple choice analogy questions, easy and hard: 
 ```
  python preprocess_word_analogy.py
 
@@ -55,8 +55,8 @@ First run the fllowing to make multiple choice analogy questions, easy and hard:
 
 
 > Preprocess Specific: 
-The following data can be proprocess with the commmand below 
-datanames=['conceptqa','wordanalogy','semeval_2012']+ ['BLESS','EVALution','CogALexV','ROOT09']
+-The following data can be proprocess with the commmand below 
+-datanames=['conceptqa','wordanalogy','semeval_2012']+ ['BLESS','EVALution','CogALexV','ROOT09']
 
 `Tokenizer_Names=['bert-large-uncased','gpt1','roberta-large','opt','prophetnet','t5-large']`
 
@@ -118,7 +118,7 @@ Note1: The chatGPT can evaluated on ConceptQA(easy/hard), analogyQA(Easy/Hard), 
 
 ### Trained Models
 
-Training the models  Mini-RelBERT, EqualProbR, Sameconcept, similarOffset
+-Training the models  Mini-RelBERT, EqualProbR, Sameconcept, similarOffset
 
 
 > 1. Mini-RelBERT
@@ -171,7 +171,7 @@ python main.py  --task eval  --data wordanalogy  --experiment wordanalogy  --mod
 
 
 > 3. EqualProbR and Lexical Relation Classification ( Table5, Tabel6,)
-For EqualProbR, we train on  lexical relation classification data set(EVALution, and on related Entities from wikidata) 
+- For EqualProbR, we train on  lexical relation classification data set(EVALution, and on related Entities from wikidata) 
 
 `data=['BLESS','EVALution','CogALexV','ROOT09', 'wikidata']`
 
@@ -195,4 +195,9 @@ python main.py  --task eval  --data dataname  --experiment wordanalogy  --model_
 
 ```
 
-`Note: all other word anlogy datasets are evauated on EqualProbR model trained on wikdiata, while EVALutionEasy/Hard on model trained on EVALution `
+`- Note: all other word anlogy datasets are evauated on EqualProbR model trained on wikdiata, while EVALutionEasy/Hard on model trained on EVALution `
+
+
+
+### Plots and Additional Experiments: 
+
