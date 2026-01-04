@@ -98,8 +98,8 @@ python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --mo
 ---
 
 
-> 2. For fasttext, and also other models (except trained models and gpt4.0) `first set the variable experiment_name='cat1_solve_analogies fasttext and then  run the following: 
-Note: change the data and model in lines 169-172 , Additional_Experiments.py , default is fasttext.
+> 2. For fasttext, and also other models (except trained models and gpt4.0) `first set the variable experiment_name='cat1_solve_analogies'  and then  run the following: 
+Note: change the data and model in lines 169-172 , Additional_Experiments.py (default is fasttext).
 
 ```
 
