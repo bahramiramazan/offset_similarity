@@ -101,24 +101,24 @@ python main.py  --task train  --data wordanalogy  --experiment additional_exp  -
 ```
 
 
->3. To evlauate chagtp : first `set the variable experiment_name=evaluate_gpt` for fasttext and then  run the following: 
+>3. To evlauate chagtp : first `set the variable experiment_name=evaluate_gpt, in Experiments.py line 73`  and then  run the following: 
 
 ```
 
 python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
 ```
-
+`The data, and model get be in Additional_Experiments.py line 170`
 
 > 3. To train EquaplProbR run the following : 
 
-First pre-process the data
+`First pre-process the data`
 ```
 python main.py  --task preprocess  --data wikidata  --tokenizer_name roberta-large
 
 ```
 
-For training change the variable Table='table2' in line 245, Experiments.py , and run the following:
+`For training change the variable Table='table2' in line 245, Experiments.py , and run the following:`
 ```
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
