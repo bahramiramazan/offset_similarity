@@ -180,7 +180,7 @@ python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-l
 ModelName=ModelName_possible_values[0] #Experimens.py line 266-272
 backend_trained=backendtrained_possible_values[0] #Experimens.py line 266-272
 
-```
+``
 
 ```
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
@@ -245,8 +245,15 @@ python main.py  --task train  --data mtcqa  --experiment mtcqa  --model_to_train
 > 1. Pretraing with analogyQA-Easy vs Hard 
 - Mini-RELBERT Only set args.hard=False(Experiments.py line ) , and train as instructed for MiniRElBert
 - MTCQA :set it in Multichoice_Model.py line 51
-- Baseline: set it in Experiments.py line 
-`for baseline model set set ModelName='baseline' (Experiments.py line 245 ) and set args.similarity_measure='offset' (Experiments.py line 270). `
+- Baseline: 
+```python
+ ModelName=ModelName_possible_values[-1] #Experimens.py line 266-272
+ backend_trained=backendtrained_possible_values[-1] #Experimens.py line 266-272
+ m='baseline_train' #Experiments.py lines 304-314
+ wordanalogy_train_data=['wikidata_hard',] #Experiments.py lines 304-314
+```
+
+
 - EqualOFfset: `for baseline model set set ModelName='sentence_route' (Experiments.py line 245 ) and set args.similarity_measure='offset' (Experiments.py line 270). `
 
 > 1. Bayesain Analysis of word semantics and word relations 
