@@ -126,21 +126,6 @@ python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --mo
 
 ```
 
-To evaluate EqualProbR on word analogyqa-easy/hard, `change the variable Table='table2_EquaProbR'`, and then run the follwoing command: 
-
-```
-python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
-
-```
-
-
-To evaluate on word analogy benchamrks in table 3,`change the variable Table='table3_EquaProbR'`, and then run the follwoing command: 
-
-```
-python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
-
-```
-
 
 
 ### Trained Models
