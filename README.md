@@ -238,3 +238,13 @@ python main.py  --task train  --data wordanalogy  --experiment additional_exp  -
 
 ```
 
+
+> 5. Lexical Relation Classification with Sentence Representation
+
+
+* After Preprocess, to Train and evaluate on test set 
+
+```
+python main.py  --task train  --data dataname  --experiment sentential_re_paper  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
+```
