@@ -70,27 +70,28 @@ python main.py  --task preprocess  --data *dataName*  --tokenizer_name tokenizer
 ### Table2 
 
 #### unsupervised vector Offset(without training)
-1. To  evaluate the word embedding models on AnalogyQA-Easy or Hard as in the Table2, simple approach is to  run the follwoing comman: 
+1. To  evaluate the word embedding models on AnalogyQA-Easy or Hard as in the Table2, effecient approach is to  run the follwoing commands in order: 
 
 
-* First preprocess change roberta-large to word embedding model of your choice :
+* First preprocess (change roberta-large to word embedding model of your choice) :
 ```
 python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-large
 
 ```
 
+* Now To evalaute (with roberta-large)run the following command
+`If you want to run on specific data only, change test datasets on Experimens.py, Lines`
 
 ```
-
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
 ```
 
 
+---
 
 
-
-> 2. For fasttext, and also other models except trained, and gpt4.0 first set the variable experiment_name='cat1_solve_analogies' for fasttext and then  run the following: 
+> 2. For fasttext, and also other models (except trained models and gpt4.0) first set the variable experiment_name='cat1_solve_analogies' for fasttext and then  run the following: 
 Note: change the data and model in lines 169-172 , Additional_Experiments.py
 
 ```
