@@ -1,6 +1,6 @@
 
 
-` To reprocdue the result for the paper : `
+` To reprocdue the result for the paper : 
 
 ## Offset Similarity in Semantically Similar Words
 
@@ -16,7 +16,7 @@ Download Sentential RE DATA, if you may train EqualProbR, otherwise skip:
 + [Wikidata](https://drive.google.com/file/d/1mmKLh6a78GVNizBoCGhs5ZMYJX2g-DIU/view?usp=sharing)
 
 
-Download only the folowing word analogy question answering datasets(For review we have included these files as tar.gz, only extract it in the home directory, and allow the empty folders to be replaced)
+Download only the folowing word analogy question answering datasets(For review we have included these files as tar.gz, only extract it and replace the essential_files and unprocessed_data in home directory with extracted folders of same names)
 
 + [sat, u2,u4,bats,google](https://github.com/asahi417/analogy-language-model) download and place it under the folder : unprocessed_data/analogy_data.
 + [scan](https://huggingface.co/datasets/relbert/analogy_questions) after download/clone  data from [Tamara Czinczoll](https://arxiv.org/abs/2211.15268) and place  test.jsonl, and valid.jsonl  under the foler :unprocessed_data/some_extra/scan/.
