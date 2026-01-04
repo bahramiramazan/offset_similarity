@@ -108,7 +108,7 @@ python main.py  --task train  --data wordanalogy  --experiment additional_exp  -
 python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
 ```
-`The data, and model get be in Additional_Experiments.py line 170`
+`The data, and model can be changes in Additional_Experiments.py line 170`
 
 > 3. To train EquaplProbR run the following : 
 
@@ -118,13 +118,13 @@ python main.py  --task preprocess  --data wikidata  --tokenizer_name roberta-lar
 
 ```
 
-`For training change the variable Table='table2' in line 245, Experiments.py , and run the following:`
+`For training set the variable Table='table2' (line 245, Experiments.py),  and run the following:`
 ```
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
 ```
 
-To evaluate on word analogyqa-easy/hard, change the variable Table='table2_EquaProbR', and then run the follwoing command: 
+To evaluate EqualProbR on word analogyqa-easy/hard, `change the variable Table='table2_EquaProbR'`, and then run the follwoing command: 
 
 ```
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
@@ -132,7 +132,7 @@ python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --mo
 ```
 
 
-To evaluate on word analogy,change the variable Table='table3_EquaProbR', and then run the follwoing command: 
+To evaluate on word analogy,`change the variable Table='table3_EquaProbR'`, and then run the follwoing command: 
 
 ```
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
