@@ -116,7 +116,7 @@ python main.py  --task train  --data wordanalogy  --experiment additional_exp  -
 
 ### Trained Models
 
-- Training the models  Mini-RelBERT, EqualProbR, Sameconcept, similarOffset
+- Training the each of the models : Mini-RelBERT, EqualProbR, Sameconcept, similarOffset
 
 ---
 > 1. Mini-RelBERT
@@ -127,14 +127,14 @@ python main.py  --task preprocess  --data semeval_2012 --tokenizer_name roberta-
 
 ```
 
-* Now to Train 
+* To Train 
 
 ```
 python main.py  --task train  --data semeval_2012  --experiment semeval_2012  --model_to_train  rc  --tokenizer_name roberta-large
 
 ```
 
-- To Evaluate ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
+- To Evaluate on word analogy ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
 
 ```
 python main.py  --task eval  --data semeval_2012  --experiment semeval_2012  --model_to_train  rc  --tokenizer_name roberta-large
@@ -151,14 +151,14 @@ python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-l
 
 ```
 
-* Now to Train 
+* Train and Evaluate at once : 
 
 ```
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
 ```
 
-- To Evaluate ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
+- To  Evaluate only ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
 
 ```
 python main.py  --task eval  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
@@ -179,7 +179,7 @@ python main.py  --task preprocess  --data dataname --tokenizer_name roberta-larg
 
 ```
 
-* Now to Train and evaluate on test set 
+* To Train and evaluate on test set 
 
 ```
 python main.py  --task train  --data dataname  --experiment lexical_offset  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
@@ -206,10 +206,10 @@ python main.py  --task train  --data mtcqa  --experiment mtcqa  --model_to_train
 
 
 > 1. Pretraing with analogyQA-Easy vs Hard 
-* Mini-RELBERT Only set args.hard=False(Experiments.py line ) , and train as instructed for MiniRElBert
-* MTCQA :set it in Multichoice_Model.py line 51
-* Baseline: set it in Experiments.py line 
-* EqualOFfset: set it in Experiments.py line 
+- Mini-RELBERT Only set args.hard=False(Experiments.py line ) , and train as instructed for MiniRElBert
+- MTCQA :set it in Multichoice_Model.py line 51
+- Baseline: set it in Experiments.py line 
+- EqualOFfset: set it in Experiments.py line 
 
 > 1. Bayesain Analysis of word semantics and word relations 
 - First set experiment_name='cat2_basian_analysis' in Experiments.py line 73, then run the following 
