@@ -109,7 +109,7 @@ python main.py  --task train  --data wordanalogy  --experiment additional_exp  -
 python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
 ```
-`- Note1: The chatGPT can evaluated on ConceptQA(easy/hard), analogyQA(Easy/Hard), and common word analogy benchmarks, you just need to select the data you want to evaluate on `The data, and model can be changed in Additional_Experiments.py line 170`
+- Note1: The chatGPT can evaluated on ConceptQA(easy/hard), analogyQA(Easy/Hard), and common word analogy benchmarks, you just need to select the data you want to evaluate on `The data, and model can be changed in Additional_Experiments.py line 170`
 
 `- Note2: To Evaluate the response, use GPT notebook. Some times minor adjustments may be needed. `
 
@@ -197,7 +197,24 @@ python main.py  --task eval  --data dataname  --experiment wordanalogy  --model_
 
 `- Note: all other word anlogy datasets are evauated on EqualProbR model trained on wikdiata, while EVALutionEasy/Hard on model trained on EVALution `
 
+### MTCQA model
+`Set the specific experiment related to mtcqa in Multchoice_Model.py line 51 , and then run the following `
+```
+python main.py  --task train  --data mtcqa  --experiment mtcqa  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+```
 
 
-### Plots and Additional Experiments: 
+### Plots and Additional Experiments From Appendix: 
+
+
+> 1. Pretraing with analogyQA-Easy vs Hard 
+
+
+> 1. Bayesain Analysis of word semantics and word relations 
+
+> 3. Various Permutation of word Analogy 
+
+
+
+> 4. Ineragreement between models
 
