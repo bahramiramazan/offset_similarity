@@ -180,7 +180,7 @@ python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-l
 ModelName=ModelName_possible_values[0] #Experimens.py line 266-272
 backend_trained=backendtrained_possible_values[0] #Experimens.py line 266-272
 
-```
+``
 
 ```
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
@@ -245,7 +245,7 @@ python main.py  --task train  --data mtcqa  --experiment mtcqa  --model_to_train
 > 1. Pretraing with analogyQA-Easy vs Hard 
 - Mini-RELBERT Only set args.hard=False(Experiments.py line ) , and train as instructed for MiniRElBert
 - MTCQA :set it in Multichoice_Model.py line 51
-- Baseline: 
+- Baseline: set the following configurations first,
 ```python
  ModelName=ModelName_possible_values[-1] #Experimens.py line 266-272
  backend_trained=backendtrained_possible_values[-1] #Experimens.py line 266-272
