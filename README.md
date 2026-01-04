@@ -101,7 +101,7 @@ python main.py  --task train  --data wordanalogy  --experiment additional_exp  -
 ```
 
 
->3. To evlauate chagtp : first `set the variable experiment_name='evaluate_gpt' for fasttext` and then  run the following: 
+>3. To evlauate chagtp : first `set the variable experiment_name=evaluate_gpt` for fasttext and then  run the following: 
 
 ```
 
