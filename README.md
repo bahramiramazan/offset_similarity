@@ -67,7 +67,6 @@ python main.py  --task preprocess  --data *dataName*  --tokenizer_name tokenizer
 
 
 
-### Table2 
 
 #### unsupervised vector Offset(without training)
 
