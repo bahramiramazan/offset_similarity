@@ -1,8 +1,8 @@
 
 
-# OffsetSimilarity: To reprocdue the result for the paper : 
+#### OffsetSimilarity: To reprocdue the result for the paper : 
 
-Offset Similarity in Semantically Similar Words
+## Offset Similarity in Semantically Similar Words
 
 
 
