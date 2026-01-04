@@ -42,201 +42,199 @@ pip installl tqdm
 ```
 
 # Running
-### Preprocessing Analogy
+	## Preprocessing Analogy
 
+		> preprocess General: \
+		- First run the fllowing to make multiple choice analogy questions, easy and hard: 
+		```
+		 python preprocess_word_analogy.py
 
+		```
 
-> preprocess General: \
-- First run the fllowing to make multiple choice analogy questions, easy and hard: 
-```
- python preprocess_word_analogy.py
 
-```
+		> Preprocess Specific: 
+		- The following data can be proprocess with the commmand below 
+		- datanames=['conceptqa','wordanalogy','semeval_2012']+ ['BLESS','EVALution','CogALexV','ROOT09']
 
+		`Tokenizer_Names=['bert-large-uncased','gpt1','roberta-large','opt','prophetnet','t5-large']`
 
-> Preprocess Specific: 
-- The following data can be proprocess with the commmand below 
-- datanames=['conceptqa','wordanalogy','semeval_2012']+ ['BLESS','EVALution','CogALexV','ROOT09']
+		```
+		python main.py  --task preprocess  --data *dataName*  --tokenizer_name tokenizerName
 
-`Tokenizer_Names=['bert-large-uncased','gpt1','roberta-large','opt','prophetnet','t5-large']`
+		```
 
-```
-python main.py  --task preprocess  --data *dataName*  --tokenizer_name tokenizerName
 
-```
+	## Evaluation and Training 
 
+		### unsupervised vector Offset(without training)
 
 
+			> 1. To  evaluate the word embedding models on AnalogyQA-Easy or Hard as in the Table2, effecient approach is to  run the follwoing commands in order: 
 
-#### unsupervised vector Offset(without training)
 
+			* First preprocess (change roberta-large to word embedding model of your choice) :
+			```
+			python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-large
 
-> 1. To  evaluate the word embedding models on AnalogyQA-Easy or Hard as in the Table2, effecient approach is to  run the follwoing commands in order: 
+			```
 
+			* Now To evalaute (with roberta-large)run the following command
+			`If you want to run on specific data only, change test datasets on Experimens.py, Lines`
 
-* First preprocess (change roberta-large to word embedding model of your choice) :
-```
-python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-large
+			```
+			python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-```
+			```
 
-* Now To evalaute (with roberta-large)run the following command
-`If you want to run on specific data only, change test datasets on Experimens.py, Lines`
 
-```
-python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+			---
 
-```
 
+			> 2. For fasttext, and also other models (except trained models and gpt4.0) `first set the variable experiment_name='cat1_solve_analogies fasttext and then  run the following: 
+			Note: change the data and model in lines 169-172 , Additional_Experiments.py , default is fasttext.
 
----
+			```
 
+			python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-> 2. For fasttext, and also other models (except trained models and gpt4.0) `first set the variable experiment_name='cat1_solve_analogies fasttext and then  run the following: 
-Note: change the data and model in lines 169-172 , Additional_Experiments.py , default is fasttext.
+			```
 
-```
 
-python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+			> 3. To collect response from  ChatGPT : first `set the variable experiment_name=evaluate_gpt, in Experiments.py line 73`  and then  run the following: 
 
-```
+			```
 
+			python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-> 3. To collect response from  ChatGPT : first `set the variable experiment_name=evaluate_gpt, in Experiments.py line 73`  and then  run the following: 
+			```
+			- Note1: The chatGPT can evaluated on ConceptQA(easy/hard), analogyQA(Easy/Hard), and common word analogy benchmarks, you just need to select the data you want to evaluate on `The data, and model can be changed in Additional_Experiments.py line 170`
 
-```
+			`- Note2: To Evaluate the response, use GPT notebook. Some times minor adjustments may be needed. `
 
-python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-```
-- Note1: The chatGPT can evaluated on ConceptQA(easy/hard), analogyQA(Easy/Hard), and common word analogy benchmarks, you just need to select the data you want to evaluate on `The data, and model can be changed in Additional_Experiments.py line 170`
 
-`- Note2: To Evaluate the response, use GPT notebook. Some times minor adjustments may be needed. `
 
+		### Trained Models
 
+			- Training the models  Mini-RelBERT, EqualProbR, Sameconcept, similarOffset
 
 
-### Trained Models
+			> 1. Mini-RelBERT
 
-- Training the models  Mini-RelBERT, EqualProbR, Sameconcept, similarOffset
+			* First preprocess (change roberta-large to word embedding model of your choice) :
+			```
+			python main.py  --task preprocess  --data semeval_2012 --tokenizer_name roberta-large
 
+			```
 
-> 1. Mini-RelBERT
+			* Now to Train 
 
-* First preprocess (change roberta-large to word embedding model of your choice) :
-```
-python main.py  --task preprocess  --data semeval_2012 --tokenizer_name roberta-large
+			```
+			python main.py  --task train  --data semeval_2012  --experiment semeval_2012  --model_to_train  rc  --tokenizer_name roberta-large
 
-```
+			```
 
-* Now to Train 
+			- To Evaluate ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
 
-```
-python main.py  --task train  --data semeval_2012  --experiment semeval_2012  --model_to_train  rc  --tokenizer_name roberta-large
+			```
+			python main.py  --task eval  --data semeval_2012  --experiment semeval_2012  --model_to_train  rc  --tokenizer_name roberta-large
 
-```
+			```
 
-- To Evaluate ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
 
-```
-python main.py  --task eval  --data semeval_2012  --experiment semeval_2012  --model_to_train  rc  --tokenizer_name roberta-large
 
-```
+			> 2. SimiarOffset
 
+			* First preprocess (change roberta-large to word embedding model of your choice) :
+			```
+			python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-large
 
+			```
 
-> 2. SimiarOffset
+			* Now to Train 
 
-* First preprocess (change roberta-large to word embedding model of your choice) :
-```
-python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-large
+			```
+			python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-```
+			```
 
-* Now to Train 
+			- To Evaluate ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
 
-```
-python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+			```
+			python main.py  --task eval  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-```
+			```
 
-- To Evaluate ('change evaluation data on Train_Eval.py, line 612, defualt is sat')
 
-```
-python main.py  --task eval  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-```
 
+			> 3. EqualProbR and Lexical Relation Classification ( Table5, Tabel6,)
+			- For EqualProbR, we train on  lexical relation classification data set(EVALution, and on related Entities from wikidata) 
 
+			`data=['BLESS','EVALution','CogALexV','ROOT09', 'wikidata']`
 
+			* First preprocess (change roberta-large to word embedding model of your choice) :
+			```
+			python main.py  --task preprocess  --data dataname --tokenizer_name roberta-large
 
-> 3. EqualProbR and Lexical Relation Classification ( Table5, Tabel6,)
-- For EqualProbR, we train on  lexical relation classification data set(EVALution, and on related Entities from wikidata) 
+			```
 
-`data=['BLESS','EVALution','CogALexV','ROOT09', 'wikidata']`
+			* Now to Train and evaluate on test set 
 
-* First preprocess (change roberta-large to word embedding model of your choice) :
-```
-python main.py  --task preprocess  --data dataname --tokenizer_name roberta-large
+			```
+			python main.py  --task train  --data dataname  --experiment lexical_offset  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-```
+			```
 
-* Now to Train and evaluate on test set 
+			- To Evaluate EqualPRob R on word analogy run the follwoing, make sure to set (` Table=EqualProbR`)
 
-```
-python main.py  --task train  --data dataname  --experiment lexical_offset  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+			```
+			python main.py  --task eval  --data dataname  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-```
+			```
 
-- To Evaluate EqualPRob R on word analogy run the follwoing, make sure to set (` Table=EqualProbR`)
+			`- Note: all other word anlogy datasets are evauated on EqualProbR model trained on wikdiata, while EVALutionEasy/Hard on model trained on EVALution `
 
-```
-python main.py  --task eval  --data dataname  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+			### MTCQA model
+			`Set the specific experiment related to mtcqa in Multchoice_Model.py line 51 , and then run the following `
+			```
+			python main.py  --task train  --data mtcqa  --experiment mtcqa  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+			```
 
-```
 
-`- Note: all other word anlogy datasets are evauated on EqualProbR model trained on wikdiata, while EVALutionEasy/Hard on model trained on EVALution `
+	## Plots and Additional Experiments From Appendix: 
 
-### MTCQA model
-`Set the specific experiment related to mtcqa in Multchoice_Model.py line 51 , and then run the following `
-```
-python main.py  --task train  --data mtcqa  --experiment mtcqa  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
-```
 
+		> 1. Pretraing with analogyQA-Easy vs Hard 
+		* Mini-RELBERT Only set args.hard=False(Experiments.py line ) , and train as instructed for MiniRElBert
+		* MTCQA :set it in Multichoice_Model.py line 51
+		* Baseline: set it in Experiments.py line 
+		* EqualOFfset: set it in Experiments.py line 
 
-### Plots and Additional Experiments From Appendix: 
+		> 1. Bayesain Analysis of word semantics and word relations 
+		- First set experiment_name='cat2_basian_analysis' in Experiments.py line 73, then run the following 
 
 
-> 1. Pretraing with analogyQA-Easy vs Hard 
-* Mini-RELBERT Only set args.hard=False(Experiments.py line ) , and train as instructed for MiniRElBert
-* MTCQA :set it in Multichoice_Model.py line 51
-* Baseline: set it in Experiments.py line 
-* EqualOFfset: set it in Experiments.py line 
+		```
+		python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-> 1. Bayesain Analysis of word semantics and word relations 
-- First set experiment_name='cat2_basian_analysis' in Experiments.py line 73, then run the following 
+		```
 
+		> 3. Various Permutation of word Analogy 
+		- First set experiment_name='cat1_plot_permutations_dist' in Experiments.py line 73, then run the following 
 
-```
-python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+		```
+		python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-```
+		```
 
-> 3. Various Permutation of word Analogy 
-- First set experiment_name='cat1_plot_permutations_dist' in Experiments.py line 73, then run the following 
 
-```
-python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+		> 4. Ineragreement between models
+		- First set experiment_name='cat1_interagreement_between_models' in Experiments.py line 73, then run the following 
 
-```
 
+		```
+		python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
 
-> 4. Ineragreement between models
-- First set experiment_name='cat1_interagreement_between_models' in Experiments.py line 73, then run the following 
-
-
-```
-python main.py  --task train  --data wordanalogy  --experiment additional_exp  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
-
-```
+		```
 
