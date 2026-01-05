@@ -255,8 +255,8 @@ def pre_process():
 			semeval_data_test_easy=item['semeval_data_test']
 			semeval_data_train_easy=item['semeval_data_train']
 
-			analogykb_train_easy=item['analogykb_train']
-			analogykb_test_easy=item['analogykb_test']
+			# analogykb_train_easy=item['analogykb_train']
+			# analogykb_test_easy=item['analogykb_test']
 			all_psotives_semeval=item['all_psotives_semeval']
 			all_psotives_wikidata=item['all_psotives_wikidata']
 			##
@@ -284,8 +284,8 @@ def pre_process():
 
 			wikidata_train_hard=item['wikidata_analogy_train']
 			wikidata_test_hard=item['wikidata_analogy_test']
-			analogykb_train_hard=item['analogykb_train']
-			analogykb_test_hard=item['analogykb_test']
+			# analogykb_train_hard=item['analogykb_train']
+			# analogykb_test_hard=item['analogykb_test']
 
 			semeval_data_test_hard=item['semeval_data_test']
 			semeval_data_train_hard=item['semeval_data_train']
@@ -372,8 +372,8 @@ def pre_process():
 
 	'wikidata_easy':(wikidata_train_easy,wikidata_test_easy),\
 	'wikidata_hard':(wikidata_train_hard,wikidata_test_hard),\
-	'analogykb_easy':(analogykb_train_easy,analogykb_test_easy),
-	'analogykb_hard':(analogykb_train_hard,analogykb_train_hard),\
+	# 'analogykb_easy':(analogykb_train_easy,analogykb_test_easy),
+	# 'analogykb_hard':(analogykb_train_hard,analogykb_train_hard),\
 	'ekar':(e_kar_train_data,e_kar_test_data),\
 	 'RS':(ds_conceptnet_relational_similarity_train,ds_conceptnet_relational_similarity_test),\
 	'scan':(SCAN_dataset_train,SCAN_dataset_test),
@@ -561,22 +561,22 @@ def pre_process_task(optoins_equivariance,load_from_local_disk):
 	##################################
 
 	####
-	file_name_concept_net='unprocessed_data/analogy_data/AnalogyKB/Same_Relation_ConceptNet.json'
-	file_name_wikidata='unprocessed_data/analogy_data/AnalogyKB/Same_Relation_Wikidata.json'
-	with open(file_name_concept_net, 'r') as json_file:
-	    AnalogyKB_concpet_net = list(json_file)
+	# file_name_concept_net='unprocessed_data/analogy_data/AnalogyKB/Same_Relation_ConceptNet.json'
+	# file_name_wikidata='unprocessed_data/analogy_data/AnalogyKB/Same_Relation_Wikidata.json'
+	# with open(file_name_concept_net, 'r') as json_file:
+	#     AnalogyKB_concpet_net = list(json_file)
 
-	with open(file_name_wikidata, 'r') as json_file:
-	    AnalogyKB_wikidata = list(json_file)
+	# with open(file_name_wikidata, 'r') as json_file:
+	#     AnalogyKB_wikidata = list(json_file)
 
 
-	file_name_concept_net='unprocessed_data/analogy_data/AnalogyKB/Analogous_Relation_ConceptNet.json'
-	file_name_wikidata='unprocessed_data/analogy_data/AnalogyKB/Analogous_Relation_Wikidata.json'
-	with open(file_name_concept_net, 'r') as json_file:
-	    AnalogyKB_concpet_net_analogous = list(json_file)
+	# file_name_concept_net='unprocessed_data/analogy_data/AnalogyKB/Analogous_Relation_ConceptNet.json'
+	# file_name_wikidata='unprocessed_data/analogy_data/AnalogyKB/Analogous_Relation_Wikidata.json'
+	# with open(file_name_concept_net, 'r') as json_file:
+	#     AnalogyKB_concpet_net_analogous = list(json_file)
 
-	with open(file_name_wikidata, 'r') as json_file:
-	    AnalogyKB_wikidata_analogous = list(json_file)
+	# with open(file_name_wikidata, 'r') as json_file:
+	#     AnalogyKB_wikidata_analogous = list(json_file)
 
 
 
@@ -592,14 +592,14 @@ def pre_process_task(optoins_equivariance,load_from_local_disk):
 	DATA_concept_net=[]
 	reldic_temp=rel_dic#rel_dic
 	#AnalogyKB_concpet_net=make_analogy_question_analogykb(rel_dic_SRE_copy,reldic_temp,AnalogyKB_concpet_net,data_t='concept_net',optoins_equivariance=optoins_equivariance)
-	AnalogyKB_wikidata=make_analogy_question_analogykb(rel_dic_SRE_copy,reldic_temp,AnalogyKB_wikidata,data_t='wiki',optoins_equivariance=optoins_equivariance)
+	AnalogyKB_wikidata=[]#make_analogy_question_analogykb(rel_dic_SRE_copy,reldic_temp,AnalogyKB_wikidata,data_t='wiki',optoins_equivariance=optoins_equivariance)
 
 
 	#AnalogyKB_concpet_net_analogous=make_analogy_question_analogykb(rel_dic_SRE_copy,reldic_temp,AnalogyKB_concpet_net_analogous,data_t='concept_net_analogous',optoins_equivariance=optoins_equivariance)
-	AnalogyKB_wikidata_analogous=make_analogy_question_analogykb(rel_dic_SRE_copy,reldic_temp,AnalogyKB_wikidata_analogous,data_t='wiki_analogous',optoins_equivariance=optoins_equivariance)
+	AnalogyKB_wikidata_analogous=[]#make_analogy_question_analogykb(rel_dic_SRE_copy,reldic_temp,AnalogyKB_wikidata_analogous,data_t='wiki_analogous',optoins_equivariance=optoins_equivariance)
 
-	random.shuffle(AnalogyKB_concpet_net_analogous)
-	random.shuffle(AnalogyKB_wikidata_analogous)
+	# random.shuffle(AnalogyKB_concpet_net_analogous)
+	# random.shuffle(AnalogyKB_wikidata_analogous)
 	reldic_temp_semeval={}
 	gold=False
 	semeval_2012=[]
@@ -701,13 +701,13 @@ def pre_process_task(optoins_equivariance,load_from_local_disk):
 
 
 
-	analogykb_concept_net=AnalogyKB_concpet_net[:]#+AnalogyKB_concpet_net_analogous[:-1000]
-	analogykb_wikidata=AnalogyKB_wikidata[:]#+AnalogyKB_wikidata_analogous[:-1000]
-	analogykb_test=AnalogyKB_concpet_net[:4000]
+	# analogykb_concept_net=AnalogyKB_concpet_net[:]#+AnalogyKB_concpet_net_analogous[:-1000]
+	# analogykb_wikidata=AnalogyKB_wikidata[:]#+AnalogyKB_wikidata_analogous[:-1000]
+	# analogykb_test=AnalogyKB_concpet_net[:4000]
 
-	analogykb_train=analogykb_wikidata#+analogykb_concept_net
+	# analogykb_train=analogykb_wikidata#+analogykb_concept_net
 
-	analogykb_test=AnalogyKB_wikidata_analogous[:1000]#+AnalogyKB_concpet_net_analogous[:1000]
+	# analogykb_test=AnalogyKB_wikidata_analogous[:1000]#+AnalogyKB_concpet_net_analogous[:1000]
 
 
 
@@ -723,8 +723,8 @@ def pre_process_task(optoins_equivariance,load_from_local_disk):
 		'wikidata_analogy_test':wikidata_analogy_test,\
 		'semeval_data_train':semeval_data_train_,\
 		'semeval_data_test':semeval_data_test_,\
-		'analogykb_train':analogykb_train,\
-		'analogykb_test':analogykb_test,\
+		# 'analogykb_train':analogykb_train,\
+		# 'analogykb_test':analogykb_test,\
 		'all_psotives_wikidata':all_psotives_wikidata,\
 		'all_psotives_semeval':all_psotives_semeval,\
 		'semeval_2012_train_relbert':semeval_data_train_relbert,\
@@ -743,8 +743,8 @@ def pre_process_task(optoins_equivariance,load_from_local_disk):
 		'semeval_data_test_hard_plus':semeval_data_test_hard_plus,\
 		'semeval_data_train_hard_plus_8':semeval_data_train_hard_plus_8,\
 		'semeval_data_test_hard_plus_8':semeval_data_test_hard_plus_8,\
-		'analogykb_train':analogykb_train,\
-		'analogykb_test':analogykb_test,\
+		# 'analogykb_train':analogykb_train,\
+		# 'analogykb_test':analogykb_test,\
 		'all_psotives_wikidata':all_psotives_wikidata,\
 		'all_psotives_semeval':all_psotives_semeval,\
 		# 'semeval_2012_train':semeval_data_train,\

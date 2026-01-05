@@ -71,7 +71,7 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
             'evaluate_gpt'
             ]
 
-            experiment_name='cat2_pca_top_eignen_vecotr_concept_based'
+            experiment_name='cat2_basian_analysis'
 
             plots_and_custom_experiments(experiment_name,args=args)
 

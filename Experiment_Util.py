@@ -1998,6 +1998,8 @@ def solve_analogies(modelname,dn,not_corrct_terms,model=None,model_type='baselin
     }
     df = pd.DataFrame(data)
 
+    print('data',df.head())
+
     contingency_table = pd.crosstab(df['offset_similarity'], df['word_similarity'])
 
     print("--- Summary Table (Counts) ---")
@@ -2005,10 +2007,50 @@ def solve_analogies(modelname,dn,not_corrct_terms,model=None,model_type='baselin
     print("-" * 30)
 
 
+
+
+
     chi2, p, dof, expected = chi2_contingency(contingency_table)
 
     print(f"Chi-Square Statistic: {chi2:.6f}")
     print(f"P-value: {p:.6f}")
+    ##
+
+
+
+    # data1=[t[0][1] for  t in joint_distribution_r_s_]
+    # data2=[ t[1][1] for t in joint_distribution_r_s_]
+
+    # # print('data1',data1)
+    # # print('data2',data2)
+
+    # import scipy.stats as stats
+    # data = {
+    #     'offset_similarity': data1,
+    #     'word_similarity': data2
+    # }
+    # df = pd.DataFrame(data)
+
+
+
+
+
+    # spearman_corr, _ = stats.spearmanr(data1, data2,nan_policy='omit')
+
+    # print('spearman_corr',spearman_corr)
+
+
+    # kendall_corr, _ = stats.kendalltau(data1, data2)
+
+    # print('kendall_corr',kendall_corr)
+
+    
+
+    # corr, _ = stats.pearsonr (data1, data2)
+    # print('corr',corr)
+
+
+
 
 
     return acc
