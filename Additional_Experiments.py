@@ -52,7 +52,15 @@ all_models_names=['prophetnet','opt','gpt2','t5-large','t5-small','roberta-base'
 
 def semantic_space_experiment(experiment_name,abstract,model_name,args):
 
-    if 'conceptqa' in experiment_name:
+    if  'cat2_pca_top_eignen_vecotr_concept_based' in experiment_name:
+        abstract_spaces_google=get_google_abstract_space_dic(semeval_or_google='google')
+
+        model_name='fasttext'
+        model=get_model(model_name)
+        plot_google_pca(abstract_spaces_google,model_name,model)
+
+
+    elif 'conceptqa' in experiment_name:
 
         cos = nn.CosineSimilarity(dim=-1, eps=1e-6)
 

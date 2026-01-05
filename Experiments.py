@@ -58,6 +58,7 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
             'cat2_plot_semantic_space_questions',\
             'cat2_plot_space_based_similarity',\
             'cat2_check_r_head_tail_concepts_types',\
+            'cat2_pca_top_eignen_vecotr_concept_based'
 
             'cat1_print_sample',\
             'cat1_plot_sim_vs_abstract'
@@ -70,7 +71,7 @@ def experiment_run(data_name,experiment,mode='train',model_to_train='rc',backend
             'evaluate_gpt'
             ]
 
-            experiment_name='cat2_basian_analysis'
+            experiment_name='cat2_pca_top_eignen_vecotr_concept_based'
 
             plots_and_custom_experiments(experiment_name,args=args)
 

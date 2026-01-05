@@ -180,7 +180,7 @@ python main.py  --task preprocess  --data wordanalogy --tokenizer_name roberta-l
 ModelName=ModelName_possible_values[0] #Experimens.py line 266-272
 backend_trained=backendtrained_possible_values[0] #Experimens.py line 266-272
 
-```
+``
 
 ```
 python main.py  --task train  --data wordanalogy  --experiment wordanalogy  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
@@ -291,5 +291,17 @@ python main.py  --task train  --data wordanalogy  --experiment additional_exp  -
 
 ```
 python main.py  --task train  --data dataname  --experiment sentential_re_paper  --model_to_train  wordanalogy_re_model  --tokenizer_name roberta-large
+
+```
+
+
+
+> 5. Cluster of words in the Appendix
+
+
+* After setting `experiment_name='cat2_pca_top_eignen_vecotr_concept_based'` in Experimnts.py line 74 run the following:
+
+```
+python main.py  --task train  --data google  --experiment additional_exp  --model_to_train  wordanalogy_re_model  fasttext
 
 ```

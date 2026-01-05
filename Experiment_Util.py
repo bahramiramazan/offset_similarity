@@ -859,7 +859,7 @@ def check_r_head_tail_concepts(all_related):
 
 def get_google_abstract_space_dic(embeddings=False,model=None,model_name=None,semeval_or_google='google',f='semantic_space_dic'):
     if semeval_or_google=='google':
-        file='essential_files/simple_analogy.json'
+        file='unprocessed_data/simple_analogy.json'
         data= json.load(open(file))['data']
         ###
     elif semeval_or_google=='semeval_2012':
@@ -2529,3 +2529,108 @@ def similarity_in_same_rel(model,model_name,all_related):
     plt.savefig('images/sim_dis/rel2/'+str(choice_from_no_rel)+str(similar_relation)+'-'+str(model_name)+str(dn)+'.png')
     plt.close()
 
+
+
+
+def plot_google_pca(abstract_spaces_google,model_name,model):
+    colors_dic = {
+        'country':"royalblue",
+        'capital':'peru',
+        'currency':"red", 
+        'city':"darkgreen",
+        'state':"cyan",
+        'male':"orange",
+        'female':"gray",
+        'verb':"blue",
+        'preterite':"magenta",
+        'verb':'darkred',
+        'plural':'black',
+        'adj':'olive',
+        'participle':'pink',
+        'nationality':'purple',
+        'superlative':'teal',
+        'antonym':'violet',
+        'adverb':'brown',
+        'comparative':'darkcyan',
+        'noun':'bisque'
+    }
+
+
+    All_Wv=[]
+    Ws_label=[]
+    cats_all=[]
+
+    All_data={}
+    selected_cat=['state','country','capital','currency','male','female','adverb',\
+                  'superlative','verb','nationality','plural','noun','comparative']
+
+    selected_cat=['antonym','superlative','comparative','participle','noun']
+
+    for c in abstract_spaces_google.keys():
+
+        concept_words=abstract_spaces_google[c]
+
+        for w in concept_words:
+            
+            w=w[0]
+            print('w',w)
+            w_e=get_embedding(model,w,model_name)
+            w_e.squeeze(0)
+            All_Wv.append(w_e)
+            Ws_label.append(c)
+            cats_all.append(c)
+
+    #################
+
+    import numpy as np
+    from sklearn.decomposition import PCA
+    import pandas as pd
+
+    pca = PCA(n_components=100)
+
+    arr = np.concatenate(All_Wv, axis=0)
+    x_2d = pca.fit_transform(arr)
+
+    import matplotlib.pyplot as plt
+    arrows=zip(Ws_label,x_2d)
+    j=0
+    plt.figure(figsize=(12, 12))
+
+    d=0
+    arrows=zip(Ws_label,x_2d[:,d:d+2])
+    j=0
+
+    for (label, vec)  in arrows:
+
+        vec=vec#*4
+
+        if vec[0]<=-0.25 or vec[0]>=0.25:
+            continue
+        j=j+1
+        if (j+1)%2!=0:
+            pass
+            #continue
+
+
+
+        cat=cats_all[j-1]
+        clr=colors_dic[cat]
+        # #print('cat',cat,label)
+        # if cat not in selected_cat:
+        #     continue
+
+        plt.text(vec[0], vec[1]+0.0002, label, fontsize=12)
+
+
+        plt.scatter(vec[0], vec[1],color=clr, zorder=5,s=50)
+
+
+    plt.axhline(0, color="black", linewidth=0.002)
+    plt.axvline(0, color="black", linewidth=0.002)
+    plt.xlim(-0.25, 0.25)
+    plt.ylim(-0.25, 0.25)
+    plt.gca().set_aspect("equal", adjustable="box")
+    plt.title("Embedding Visualized with PCA")
+    #plt.show()
+    plt.savefig('images/pca'+str(d)+'.png')
+    
