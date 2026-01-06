@@ -305,3 +305,14 @@ python main.py  --task train  --data dataname  --experiment sentential_re_paper 
 python main.py  --task train  --data google  --experiment additional_exp  --model_to_train  wordanalogy_re_model  fasttext
 
 ```
+
+
+
+
+
+## Final Note:
+
+* `We used the code from RelBert the loss function from [RelBert](https://github.com/asahi417/relbert) for MiniRelBert. `
+* `For plots, we used gemini and chatGPT  to provide us with templates, and then modified that according to our need. `
+
+
