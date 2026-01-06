@@ -312,7 +312,7 @@ python main.py  --task train  --data google  --experiment additional_exp  --mode
 
 ## Final Note:
 
-* `We used the code from RelBert the loss function from [RelBert](https://github.com/asahi417/relbert) for MiniRelBert. `
+* `We used the code for the loss function from [RelBert](https://github.com/asahi417/relbert) for MiniRelBert. `
 * `For plots, we used gemini and chatGPT  to provide us with templates, and then modified that according to our need. `
 
 
